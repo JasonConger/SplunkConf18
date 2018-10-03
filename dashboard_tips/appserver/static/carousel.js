@@ -3,7 +3,7 @@ require([
     'jquery',
     'splunkjs/mvc',
     'splunkjs/mvc/simplexml/ready!',
-	'/static/app/mte_visualizations/js/lib/jquery.cloud9carousel.js'
+	'/static/app/dashboard_tips/js/lib/jquery.cloud9carousel.js'
 ], function(_, $, mvc, Carousel) {
 
     
