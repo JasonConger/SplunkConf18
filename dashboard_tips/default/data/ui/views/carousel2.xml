@@ -1,0 +1,155 @@
+<dashboard stylesheet="carousel.css" script="carousel.js">
+  <label>Single Value Carousel</label>
+  <row id="showcase">
+    <panel>
+      <title>Temperatures</title>
+      <single>
+        <title>Color By Threshold, Absolute Trend</title>
+        <search>
+          <query>| inputlookup sf-temperatures.csv | eval _time=strptime(DATE, "%Y%m%d") | timechart avg(TMAX) AS tmax span=7d | eval tmax = tmax/10/5*9+32</query>
+          <earliest>1403420400</earliest>
+          <latest>1433228400</latest>
+        </search>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="trendInterval">-7d</option>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="numberPrecision">0.0</option>
+        <option name="rangeColors">["0x0E31EB","0x6db7c6","0xf7bc38","0xf58f39","0xd93f3c"]</option>
+        <option name="rangeValues">[0,60,70,80]</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="height">143</option>
+        <option name="underLabel">compared to last week</option>
+        <option name="drilldown">none</option>
+        <option name="unit">°F</option>
+        <option name="unitPosition">after</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Stock Ticker</title>
+      <single>
+        <title>Color By Trend, in %</title>
+        <search>
+          <query>| inputlookup splunk-stock.csv | eval _time=strptime(date, "%Y-%m-%d") | timechart last(close) span=7d | fillnull value=NULL</query>
+          <earliest>0</earliest>
+        </search>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1y</option>
+        <option name="colorBy">trend</option>
+        <option name="colorMode">none</option>
+        <option name="numberPrecision">0.00</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="height">143</option>
+        <option name="underLabel">compared to 1 year before</option>
+        <option name="drilldown">none</option>
+        <option name="unit">$</option>
+        <option name="unitPosition">before</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Stock Ticker</title>
+      <single>
+        <title>Color By Trend, in %</title>
+        <search>
+          <query>| inputlookup splunk-stock.csv | eval _time=strptime(date, "%Y-%m-%d") | timechart last(close) span=7d | fillnull value=NULL</query>
+          <earliest>0</earliest>
+        </search>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1w</option>
+        <option name="colorBy">trend</option>
+        <option name="colorMode">none</option>
+        <option name="numberPrecision">0.00</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="height">143</option>
+        <option name="underLabel">compared to 1 week before</option>
+        <option name="drilldown">none</option>
+        <option name="unit">$</option>
+        <option name="unitPosition">before</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>| inputlookup sf-temperatures.csv | eval _time=strptime(DATE, "%Y%m%d") | timechart avg(TMAX) AS tmax span=7d | eval tmax = tmax/10/5*9+32</query>
+          <earliest>1403420400</earliest>
+          <latest>1433228400</latest>
+        </search>
+        <option name="trendColorInterpretation">inverse</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="trendInterval">-7d</option>
+        <option name="colorBy">value</option>
+        <option name="colorMode">block</option>
+        <option name="numberPrecision">0.0</option>
+        <option name="rangeColors">["0x0E31EB","0x6db7c6","0xf7bc38","0xf58f39","0xd93f3c"]</option>
+        <option name="rangeValues">[0,60,70,80]</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="height">143</option>
+        <option name="underLabel">compared to last week</option>
+        <option name="drilldown">none</option>
+        <option name="unit">°F</option>
+        <option name="unitPosition">after</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>| inputlookup splunk-stock.csv | eval _time=strptime(date, "%Y-%m-%d") | timechart last(close) span=7d | fillnull value=NULL</query>
+          <earliest>0</earliest>
+        </search>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1y</option>
+        <option name="colorBy">trend</option>
+        <option name="colorMode">block</option>
+        <option name="numberPrecision">0.00</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="height">143</option>
+        <option name="underLabel">compared to 1 year before</option>
+        <option name="drilldown">none</option>
+        <option name="unit">$</option>
+        <option name="unitPosition">before</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>| inputlookup splunk-stock.csv | eval _time=strptime(date, "%Y-%m-%d") | timechart last(close) span=7d | fillnull value=NULL</query>
+          <earliest>0</earliest>
+        </search>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1w</option>
+        <option name="colorBy">trend</option>
+        <option name="colorMode">block</option>
+        <option name="numberPrecision">0.00</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="height">143</option>
+        <option name="underLabel">compared to 1 week before</option>
+        <option name="drilldown">none</option>
+        <option name="unit">$</option>
+        <option name="unitPosition">before</option>
+      </single>
+    </panel>
+  </row>
+</dashboard>

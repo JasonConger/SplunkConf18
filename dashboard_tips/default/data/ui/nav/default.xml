@@ -1,0 +1,27 @@
+<nav search_view="search">
+  <collection label="Developer Settings">
+    <view name="developer_settings" />
+  </collection>
+
+  <collection label="Simple XML - no code">
+    <view name="conditional_map" />
+    <view name="bootstrap_modal" />
+    <view name="static_resources" />
+    <view name="style_guide" />
+  </collection>
+
+  <collection label="JavaScript">
+    <view name="table_rendering_with_tooltips" />
+    <view name="table_pivot" />
+    <view name="interactive_toggle" />
+    <view name="form_input_types" />
+    <view name="modal_chart" />
+  </collection>
+  
+  <collection label="Bonus">
+    <view name="attributes" />
+    <view name="carousel1" />
+  </collection>
+  
+  <view name="search"/>
+</nav>

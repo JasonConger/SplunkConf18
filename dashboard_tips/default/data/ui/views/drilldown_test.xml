@@ -1,0 +1,50 @@
+<dashboard>
+  <label>drilldown_test</label>
+  <row>
+    <panel>
+      <html>
+        map_name
+      </html>
+      <map>
+        <search>
+          <query>| makeresults | eval ipaddr="204.107.141.22" | iplocation ipaddr | geostats count by ipaddr</query>
+          <earliest>0</earliest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="drilldown">all</option>
+        <option name="mapping.choroplethLayer.colorBins">5</option>
+        <option name="mapping.choroplethLayer.colorMode">auto</option>
+        <option name="mapping.choroplethLayer.maximumColor">0xaf575a</option>
+        <option name="mapping.choroplethLayer.minimumColor">0x62b3b2</option>
+        <option name="mapping.choroplethLayer.neutralPoint">0</option>
+        <option name="mapping.choroplethLayer.shapeOpacity">0.75</option>
+        <option name="mapping.choroplethLayer.showBorder">1</option>
+        <option name="mapping.data.maxClusters">100</option>
+        <option name="mapping.legend.placement">bottomright</option>
+        <option name="mapping.map.center">(0,0)</option>
+        <option name="mapping.map.panning">1</option>
+        <option name="mapping.map.scrollZoom">0</option>
+        <option name="mapping.map.zoom">2</option>
+        <option name="mapping.markerLayer.markerMaxSize">50</option>
+        <option name="mapping.markerLayer.markerMinSize">10</option>
+        <option name="mapping.markerLayer.markerOpacity">0.8</option>
+        <option name="mapping.showTiles">1</option>
+        <option name="mapping.tileLayer.maxZoom">7</option>
+        <option name="mapping.tileLayer.minZoom">0</option>
+        <option name="mapping.tileLayer.tileOpacity">1</option>
+        <option name="mapping.type">marker</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+        <drilldown>
+          <set token="map_name">$click.name$</set>
+          <set token="map_value">$click.value$</set>
+          <set token="map_name2">$click.name2$</set>
+          <set token="map_value2">$click.value2$</set>
+          <set token="map_lat_name">$click.lat.name$</set>
+          <set token="map_lat_value">$click.lat.value$</set>
+        </drilldown>
+      </map>
+    </panel>
+  </row>
+</dashboard>

@@ -1,0 +1,46 @@
+<form>
+  <label>2. Conditional Map</label>
+  
+  <description>
+    204.107.141.22 is a San Francisco IP address.
+  </description>
+  
+  <fieldset submitButton="true" autoRun="false">
+    <input type="text" token="ipaddr">
+      <label>IP Address:</label>
+    </input>
+  </fieldset>
+  
+  <search id="map_search">
+    
+    <query>
+      | makeresults | eval ipaddr="$ipaddr$" | iplocation ipaddr
+    </query>
+    <progress>
+      <condition match='$result.lat$!=""'>
+        <set token="show_map">true</set>
+      </condition>
+      <condition>
+        <unset token="show_map"></unset>
+      </condition>
+    </progress>
+  </search>
+  
+  <row>
+    <panel>
+      <table>
+        <title>IP Address Details</title>
+        <search base="map_search"></search>
+      </table>
+    </panel>
+    
+    <panel depends="$show_map$">
+      <map>
+        <title>The map shows up if geostats can determine lat and lon</title>
+        <search base="map_search">
+          <query>geostats count by ipaddr</query>
+        </search>
+      </map>
+    </panel>
+  </row>
+</form>

@@ -1,0 +1,44 @@
+<dashboard>
+  <label>1. Developer Settings</label>
+  <description>Caching, minification, limits</description>
+  <row>
+    <panel>
+      <title>$SPLUNK_HOME/etc/system/local/web.conf</title>
+      <html>
+        <p>
+          <pre>[settings]
+minify_js = False
+minify_css = False
+js_no_cache = True
+cacheEntriesLimit = 0
+cacheBytesLimit = 0
+enableWebDebug = True
+</pre>
+        </p>
+      </html>
+    </panel>
+    <panel>
+      <title>Selective Refresh</title>
+      <html>
+        <p>
+          <pre>http://localhost:8000/en-US/debug/refresh</pre>
+          <pre>http://localhost:8000/en-US/debug/refresh?entity=data/ui/views&amp;entity=data/ui/nav</pre>
+        </p>
+        <p>
+          <a href="https://docs.splunk.com/Documentation/Splunk/latest/Admin/Configurationfilechangesthatrequirerestart#Splunk_Enterprise_changes_that_do_not_require_a_restart" target="_blank">See Splunk docs for more information.</a>
+        </p>
+      </html>
+    </panel>
+    <panel>
+      <title>Disable Browser Debug Caching</title>
+      <html>
+        <p>
+          Example from Google Chrome.  View -&gt; Developer -&gt; Developer Tools:
+        </p>
+        <p>
+          <img src="/static/app/dashboard_tips/img/browser_debug_cache.png"/>
+        </p>
+      </html>
+    </panel>
+  </row>
+</dashboard>

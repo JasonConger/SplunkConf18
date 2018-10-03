@@ -1,0 +1,51 @@
+state,density_sqm,density_sqkm,region
+New Jersey,1210.10,467.20,Mid-Atlantic
+Rhode Island,1017.10,392.70,New England
+Massachusetts,858.00,331.30,New England
+Connecticut,742.60,286.70,New England
+Maryland,610.80,235.80,Mid-Atlantic
+Delaware,475.10,183.40,Mid-Atlantic
+New York,417.00,161.00,Mid-Atlantic
+Florida,364.60,140.80,South Atlantic
+Pennsylvania,285.50,110.20,Mid-Atlantic
+Ohio,283.20,109.30,East North Central
+California,246.10,95.00,Pacific
+Illinois,232.00,89.60,East North Central
+Hawaii,218.60,84.40,Pacific
+Virginia,209.20,80.80,South Atlantic
+North Carolina,202.60,78.20,South Atlantic
+Indiana,183.40,70.80,East North Central
+Michigan,175.00,67.60,East North Central
+Georgia,173.70,67.10,South Atlantic
+South Carolina,158.80,61.30,South Atlantic
+Tennessee,157.50,60.80,East South Central
+New Hampshire,147.80,57.10,New England
+Kentucky,111.30,43.00,East South Central
+Louisiana,107.10,41.30,West South Central
+Wisconsin,106.00,40.90,East North Central
+Washington,104.90,40.50,Pacific
+Texas,103.10,40.80,West South Central
+Alabama,95.40,36.90,East South Central
+Missouri,87.90,33.90,West North Central
+West Virginia,77.10,29.80,South Atlantic
+Minnesota,68.10,26.30,West North Central
+Vermont,68.00,26.30,New England
+Mississippi,63.70,24.60,East South Central
+Arizona,58.30,22.50,Mountain
+Arkansas,56.90,22.00,West South Central
+Oklahoma,56.10,21.70,West South Central
+Iowa,55.30,21.40,West North Central
+Colorado,50.80,19.60,Mountain
+Maine,43.10,16.60,New England
+Oregon,40.90,15.80,Pacific
+Kansas,35.40,13.70,West North Central
+Utah,35.30,13.60,Mountain
+Nevada,25.40,9.80,Mountain
+Nebraska,24.30,9.40,West North Central
+Idaho,19.50,7.50,Mountain
+New Mexico,17.20,6.60,Mountain
+South Dakota,11.10,4.30,West North Central
+North Dakota,10.50,4.00,West North Central
+Montana,7.00,2.70,Mountain
+Wyoming,6.00,2.30,Mountain
+Alaska,1.30,0.50,Pacific

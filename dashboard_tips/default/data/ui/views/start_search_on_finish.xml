@@ -1,0 +1,90 @@
+<form>
+  <label>Start a search after another search finishes</label>
+  <description>This dashboard demonstrates how to start a second search after a primary search finishes.  This is accomplished by using the &lt;done&gt; event handler in the &lt;search&gt; element.</description>
+  <fieldset submitButton="true" autoRun="false">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-48h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Primary Search</title>
+      <table>
+        <search>
+          <query>index=_internal sourcetype=splunkd | table host source sourcetype</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+          <done>
+            <set token="start">$job.earliestTime$</set>
+            <set token="end">$job.latestTime$</set>
+          </done>
+        </search>
+        <option name="count">5</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>This search happens after the above search is finished</title>
+      <chart>
+        <search>
+          <query>index=_internal | timechart count as total count(eval(sourcetype="splunkd")) as "splunkd"</query>
+          <earliest>$start$</earliest>
+          <latest>$end$</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">1</option>
+        <option name="charting.axisY2.fields">splunkd</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.overlayFields">splunkd</option>
+        <option name="charting.fieldColors">{"total": 0x639BF1, "splunkd":0xFF5A09}</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="height">300</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <pre>
+&lt;search&gt;
+  &lt;query&gt;index=_internal sourcetype=splunkd | table host source sourcetype&lt;/query&gt;
+  &lt;earliest&gt;$field1.earliest$&lt;/earliest&gt;
+  &lt;latest&gt;$field1.latest$&lt;/latest&gt;
+  &lt;sampleRatio&gt;1&lt;/sampleRatio&gt;
+  <mark>&lt;done&gt;
+    &lt;set token="start"&gt;$job.earliestTime$&lt;/set&gt;
+    &lt;set token="end"&gt;$job.latestTime$&lt;/set&gt;
+  &lt;/done&gt;</mark>
+&lt;/search&gt;
+        </pre>
+        <p> </p>
+        <pre>
+&lt;chart&gt;
+  &lt;search&gt;
+    &lt;query&gt;index=_internal | timechart count as total count(eval(sourcetype="splunkd")) as "splunkd"&lt;/query&gt;
+    <mark>&lt;earliest&gt;$start$&lt;/earliest&gt;
+    &lt;latest&gt;$end$&lt;/latest&gt;</mark>
+  &lt;/search&gt;
+        </pre>
+      </html>
+    </panel>
+  </row>
+</form>

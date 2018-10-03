@@ -1,0 +1,5 @@
+#tooltip_row {
+    /*visibility: hidden;*/
+    height: 0px;
+    overflow: hidden;
+}
