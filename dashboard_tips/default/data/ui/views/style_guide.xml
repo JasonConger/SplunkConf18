@@ -1,0 +1,35 @@
+<dashboard>
+  <label>5. Splunk Style Guide</label>
+ 
+  <row>
+    <panel>
+      <html>
+<p>
+  The <a href="/static/docs/style/style-guide.html" target="_blank">UI Style Guide</a> exposes default colors, button style, icons, and more.
+</p>
+<p>
+  Want to display a user icon?  No problem, just use <code>class="icon-user"</code> in your element.
+</p>
+<p>
+  Check it out:
+  <br />
+  <i class="icon-user"></i>
+</p>
+<p>
+  Change the font size:
+  <br /><br />
+  <i class="icon-user" style="font-size:3em"></i>
+</p>
+<p>
+  Change the color:
+  <br /><br />
+  <i class="icon-user" style="font-size:3em; color: #5CC05C"></i>
+</p>
+
+<p>
+  <a href="/static/docs/style/style-guide.html" target="_blank">https://localhost:8000/static/docs/style/style-guide.html</a>
+</p>
+      </html>
+    </panel>
+  </row>
+</dashboard>

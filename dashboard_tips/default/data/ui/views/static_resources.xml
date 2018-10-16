@@ -1,6 +1,5 @@
 <form>
-  <label>test</label>
-  <description></description>
+  <label>4. Static Resources</label>
   <search id="map_search">
     <query>
       | makeresults | eval ipaddr="$ipaddr$" | iplocation ipaddr
@@ -14,15 +13,24 @@
       </condition>
     </progress>
   </search>
-  <fieldset submitButton="true" autoRun="false">
+  
+  <fieldset submitButton="true" autoRun="true">
     <input type="text" token="ipaddr">
       <label>IP Address:</label>
+      <initialValue>204.107.141.22</initialValue>
     </input>
   </fieldset>
+  
   <row>
     <panel>
+      <html>
+        <h3 class="dashboard-element-title">IP Address Details
+          <a href="#" data-toggle="modal" data-target="#exampleModal">
+            <img src="/static/app/dashboard_tips/info.png"/>
+          </a>
+        </h3>
+      </html>
       <table>
-        <title>IP Address Details</title>
         <search base="map_search"></search>
       </table>
     </panel>
@@ -39,10 +47,26 @@
     <panel>
       <html>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
+<p>
+<img src="/static/app/dashboard_tips/info.png"/> This image lives here on the file system: <code>$SPLUNK_HOME/etc/apps/APP_NAME/appserver/static</code>
+</p>
+
+<p>
+The image can be access with this URL <a href="http://localhost:8000/static/app/dashboard_tips/info.png" target="_blank">http://localhost:8000/static/app/dashboard_tips/info.png</a>
+</p>
+
+<p>
+To include the information icon next to the panel title, we have to simulate the HTML tag used by Splunk dashboards since we cannot include HTML in the <code>&lt;title&gt;</code> tag of Simple XML. Note in the example below, using the <code>dashboard-element-title</code> class along with the <code>&lt;h3&gt;</code> tag to reuse Splunk's dashboard style.
+</p>
+<pre>
+    &lt;html&gt;
+      &lt;h3 class="dashboard-element-title"&gt;IP Address Details
+        &lt;a href="#" data-toggle="modal" data-target="#exampleModal"&gt;
+          &lt;img src="/static/app/dashboard_tips/info.png"/&gt;
+        &lt;/a&gt;
+      &lt;/h3&gt;
+    &lt;/html&gt;
+</pre>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,7 +79,7 @@
         </button>
       </div>
       <div class="modal-body">
-
+        204.107.141.22 is a San Francisco IP address.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

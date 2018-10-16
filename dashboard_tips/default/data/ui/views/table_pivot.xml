@@ -1,12 +1,12 @@
-<form>
-  <label>3. Bootstrap Modal</label>
-  <description></description>
+<form script="table2list.js">
+  <label>7. Splunk Web Framework - Table Pivot</label>
+  
   <search id="map_search">
     <query>
-      | makeresults | eval ipaddr="$ipaddr$" | iplocation ipaddr
+      | makeresults | eval ipaddr="$ipaddr$" | iplocation ipaddr | table City Country Region ipaddr lat lon
     </query>
     <progress>
-      <condition match="$result.lat$!=&quot;&quot;">
+      <condition match='$result.lat$!=""'>
         <set token="show_map">true</set>
       </condition>
       <condition>
@@ -15,26 +15,31 @@
     </progress>
   </search>
   
-  <fieldset submitButton="true" autoRun="false">
+  <fieldset submitButton="true" autoRun="true">
     <input type="text" token="ipaddr">
       <label>IP Address:</label>
+      <initialValue>204.107.141.22</initialValue>
     </input>
   </fieldset>
   
   <row>
     <panel>
-      <html>
-        <h3 class="dashboard-element-title">IP Address Details
-        <a href="#" data-toggle="modal" data-target="#exampleModal">
-  <img src="/static/app/dashboard_tips/info.png"/>
-</a>
-</h3>
-      </html>
       <table>
-        <title></title>
+        <title>Normal Table</title>
         <search base="map_search"></search>
       </table>
+      <html>
+        
+        <h3 class="dashboard-element-title">IP Address Details (table pivot)
+          <a href="#" data-toggle="modal" data-target="#exampleModal">
+            <img src="/static/app/dashboard_tips/info.png"/>
+          </a>
+        </h3>
+        <div id="list-view"/>
+        
+      </html>
     </panel>
+    
     <panel depends="$show_map$">
       <map>
         <title>The map shows up if geostats can determine lat and lon</title>
@@ -48,10 +53,8 @@
   <row>
     <panel>
       <html>
-
-<!-- Button trigger modal -->
-
-
+        This dashboard uses the <a href="http://docs.splunk.com/DocumentationStatic/WebFramework/1.4/compref_datatemplate.html" target="_blank">DataTemplateView</a> to render search results.
+        
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -59,7 +62,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"></span>
+          <span aria-hidden="true"/>
         </button>
       </div>
       <div class="modal-body">
@@ -71,7 +74,6 @@
     </div>
   </div>
 </div>
-
 
       </html>
     </panel>

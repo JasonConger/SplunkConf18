@@ -1,0 +1,83 @@
+<form hideFilters="true">
+  <label>Dashboard/Form Attributes</label>
+  <description>This dashboard demonstrates &lt;dashboard&gt; and &lt;form&gt; attributes.</description>
+  <fieldset submitButton="false">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Chrome</title>
+      <html>
+        <p>
+          <code>&lt;dashboard|form hideChrome="true|false"&gt;</code>
+        </p>
+        <p>
+          <a href="?hideChrome=true" class="btn">Hide Chrome</a> <a href="?hideChrome=false" class="btn">Show Chrome</a> 
+        </p>
+      </html>
+    </panel>
+    <panel>
+      <title>App Bar</title>
+      <html>
+        <p>
+          <code>&lt;dashboard|form hideAppBar="true|false"&gt;</code>
+        </p>
+        <p>
+          <a href="?hideAppBar=true" class="btn">Hide App Bar</a> <a href="?hideAppBar=false" class="btn">Show App Bar</a> 
+        </p>
+      </html>
+    </panel>
+    <panel>
+      <title>Edit</title>
+      <html>
+        <p>
+          <code>&lt;dashboard|form hideEdit="true|false"&gt;</code>
+        </p>
+        <p>
+          <a href="?hideEdit=true" class="btn">Hide Edit</a> <a href="?hideEdit=false" class="btn">Show Edit</a> 
+        </p>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Fitlers</title>
+      <html>
+        <p>
+          <code>&lt;dashboard|form hideFilters="true|false"&gt;</code>
+        </p>
+        <p>
+          <a href="?hideFilters=true" class="btn">Hide Fitlers</a> <a href="?hideFilters=false" class="btn">Show Fitlers</a> 
+        </p>
+      </html>
+    </panel>
+    <panel>
+      <title>Splunk Bar</title>
+      <html>
+        <p>
+          <code>&lt;dashboard|form hideSplunkBar="true|false"&gt;</code>
+        </p>
+        <p>
+          <a href="?hideSplunkBar=true" class="btn">Hide Splunk Bar</a> <a href="?hideSplunkBar=false" class="btn">Show Splunk Bar</a> 
+        </p>
+      </html>
+    </panel>
+    <panel>
+      <title>Title</title>
+      <html>
+        <p>
+          <code>&lt;dashboard|form hideTitle="true|false"&gt;</code>
+        </p>
+        <p>
+          <a href="?hideTitle=true" class="btn">Hide Title</a> <a href="?hideTitle=false" class="btn">Show Title</a> 
+        </p>
+      </html>
+    </panel>
+  </row>
+</form>

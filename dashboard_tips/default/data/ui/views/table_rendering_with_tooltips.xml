@@ -1,0 +1,56 @@
+<form stylesheet="tooltip.css" script="tooltip.js">
+  <label>6. Table Rendering with Tooltips</label>
+  <search id="main">
+    <query>index=_internal |
+		stats count by index host source sourcetype |
+		eval really_long_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elit diam, efficitur a sem at, varius euismod risus. Nullam vitae consequat orci. Mauris vulputate diam et lectus laoreet, ac sodales enim auctor. Nulla facilisi. Donec dictum varius augue ut finibus. Ut sed dapibus sapien, vitae tempor mi. Vestibulum mollis metus sit amet sapien semper sollicitudin sed ut ligula. Ut quam risus, cursus non elit id, luctus consectetur lorem. Donec non risus risus. Etiam a massa tellus. Donec sit amet vulputate urna. Mauris at semper nisi, et semper velit. Aenean quis diam leo.  Proin augue lacus, tincidunt id consectetur id, facilisis a orci. Nunc condimentum elementum lectus at consectetur. Curabitur sit amet mi nunc. Sed sollicitudin consectetur bibendum. Nullam ullamcorper mi ut tincidunt aliquet. Phasellus rutrum magna ante, non laoreet risus fringilla ac. Maecenas tempor lectus elit, eu laoreet massa vehicula a. Maecenas vel pharetra eros. Fusce vulputate pharetra sagittis."</query>
+  </search>
+  <fieldset autoRun="true">
+    <input type="time">
+      <label>Time Range:</label>
+      <default>Last 15 minutes</default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <title>Table without tool tips</title>
+        <search base="main">
+          <query>sort - _time |
+    eval Time = strftime(_time, "%Y-%m-%d %H:%M:%S") |
+    table Time index  sourcetype really_long_text source |
+    rename really_long_text AS "Message"</query>
+        </search>
+        <option name="count">5</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table id="tblTooltip">
+        <title>Table with tool tips</title>
+        <search base="main">
+          <query>sort - _time |
+    eval Time = strftime(_time, "%Y-%m-%d %H:%M:%S") |
+    table Time index  sourcetype really_long_text source |
+    rename really_long_text AS "Message"</query>
+        </search>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <ul>
+          <li>
+            <a href="http://getbootstrap.com/javascript/#tooltips" target="_blank">More information about Bootstrap tooltips</a>
+          </li>
+          <li>
+            <a href="http://blogs.splunk.com/2014/01/29/add-a-tooltip-to-simple-xml-tables-with-bootstrap-and-a-custom-cell-renderer/" target="_blank">Detailed blog on this technique.</a>
+          </li>
+        </ul>
+      </html>
+    </panel>
+  </row>
+</form>

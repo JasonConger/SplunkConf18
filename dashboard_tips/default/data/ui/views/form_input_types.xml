@@ -1,0 +1,132 @@
+<form script="table2list.js, toggle.js, tooltip.js, set_input_types.js" stylesheet="toggle.css, tooltip.css">
+  <label>9. Form Input Types</label>
+  
+  <search id="map_search">
+    <query>
+      | makeresults | eval ipaddr="$ipaddr$" | iplocation ipaddr | table City Country Region ipaddr lat lon
+    </query>
+    <progress>
+      <condition match="$result.lat$!=&quot;&quot;">
+        <set token="show_map">true</set>
+      </condition>
+      <condition>
+        <unset token="show_map"></unset>
+      </condition>
+    </progress>
+  </search>
+  
+  <search id="tooltip_table">
+    <query>index=_internal |
+		stats count by index host source sourcetype |
+		eval really_long_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elit diam, efficitur a sem at, varius euismod risus. Nullam vitae consequat orci. Mauris vulputate diam et lectus laoreet, ac sodales enim auctor. Nulla facilisi. Donec dictum varius augue ut finibus. Ut sed dapibus sapien, vitae tempor mi. Vestibulum mollis metus sit amet sapien semper sollicitudin sed ut ligula. Ut quam risus, cursus non elit id, luctus consectetur lorem. Donec non risus risus. Etiam a massa tellus. Donec sit amet vulputate urna. Mauris at semper nisi, et semper velit. Aenean quis diam leo.  Proin augue lacus, tincidunt id consectetur id, facilisis a orci. Nunc condimentum elementum lectus at consectetur. Curabitur sit amet mi nunc. Sed sollicitudin consectetur bibendum. Nullam ullamcorper mi ut tincidunt aliquet. Phasellus rutrum magna ante, non laoreet risus fringilla ac. Maecenas tempor lectus elit, eu laoreet massa vehicula a. Maecenas vel pharetra eros. Fusce vulputate pharetra sagittis."
+		</query>
+    <earliest>-15m@m</earliest>
+    <latest>now</latest>
+  </search>
+  
+  <fieldset submitButton="true" autoRun="true">
+    <input type="text" token="ipaddr">
+      <label>IP Address:</label>
+      <initialValue>204.107.141.22</initialValue>
+    </input>
+    
+    <input type="text" token="numbers" id="numbers_only" searchWhenChanged="true">
+      <label>Numbers only</label>
+      <default>1</default>
+    </input>
+    
+    <input type="text" token="numbers_0_100" id="numbers_0_100_step10" searchWhenChanged="true">
+      <label>Numbers 0-100 step=10</label>
+      <default>0</default>
+    </input>
+    
+    <input type="text" token="date" id="date" searchWhenChanged="true">
+      <label>Date</label>
+    </input>
+    
+    <input type="text" token="date_restrictions" id="date_restrictions" searchWhenChanged="true">
+      <label>Date after 2018-08-01</label>
+    </input>
+    
+    <input type="text" token="range" id="range" searchWhenChanged="true">
+      <label>Range (0-10)</label>
+      <default>5</default>
+    </input>
+    
+  </fieldset>
+  
+  <row>
+    <panel>
+      <html>
+        IP Address: <code>$ipaddr$</code>, Numbers only: <code>$numbers$</code>, Numbers 0 to 100 step=10: <code>$numbers_0_100$</code>, Date: <code>$date$</code>, Date after 2018-08-01: <code>$date_restrictions$</code>, Range: <code>$range$</code>
+      </html>
+    </panel>
+  </row>
+  
+  <row>
+    <panel>
+      <html>
+        <h3 class="dashboard-element-title">IP Address Details
+          <a href="#" data-toggle="modal" data-target="#exampleModal">
+            <img src="/static/app/dashboard_tips/info.png"/>
+          </a>
+        </h3>
+        <div id="list-view"/>
+      </html>
+      <html>
+	      <div style="float: right">
+		      Show/hide the table below  <img id="imgToggle1" class="toggle" title="Show/hide table below" src="/static/app/dashboard_tips/expand.png"/>
+	      </div>
+	    </html>
+    </panel>
+    <panel depends="$show_map$">
+      <map>
+        <title>The map shows up if geostats can determine lat and lon</title>
+        <search base="map_search">
+          <query>geostats count by ipaddr</query>
+        </search>
+      </map>
+    </panel>
+  </row>
+  <row id="tooltip_row">
+    <panel>
+      <table id="tblTooltip">
+        <title>Table with tool tips</title>
+        <search base="tooltip_table">
+          <query>sort - _time |
+    eval Time = strftime(_time, "%Y-%m-%d %H:%M:%S") |
+    table Time index  sourcetype really_long_text source |
+    rename really_long_text AS "Message"</query>
+        </search>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"/>
+        </button>
+      </div>
+      <div class="modal-body">
+        204.107.141.22 is a San Francisco IP address.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </html>
+    </panel>
+  </row>
+</form>
